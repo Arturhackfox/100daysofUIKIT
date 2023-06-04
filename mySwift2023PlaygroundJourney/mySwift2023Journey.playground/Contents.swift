@@ -593,3 +593,95 @@ func calculation (res: (String) -> String) {
 calculation { res in
     "2 * 0 is \(res)"
 }
+
+
+// MARK: DAY 8 of 100
+
+//Structs
+
+struct Sport {
+    var name: String
+}
+
+var schoolSport = Sport(name: "football")
+print(schoolSport.name)
+schoolSport.name = "American football"
+print(schoolSport.name)
+
+
+//Computed property
+
+struct Activity {
+    var name: String
+    var isOlimpicSport: Bool
+    
+    var isOlimpicStatus: String {
+        if isOlimpicSport {
+           return "\(name) is the Olimpic sport"
+        } else {
+            return "\(name) is NOT an olimpic sport"
+        }
+    }
+}
+
+var myActivity = Activity(name: "Skiing", isOlimpicSport: true)
+print(myActivity.isOlimpicStatus)
+
+
+// Property observer or "Do something when property changes"
+
+struct Server {
+    var status: String
+    var storage: Int {
+        didSet {
+            print("My storage went to \(storage)%")
+        }
+    }
+}
+
+var myLaptop = Server(status: "Active", storage: 0)
+myLaptop.storage = 20
+myLaptop.storage = 50
+myLaptop.storage = 100
+
+
+//Methods
+struct Country {
+    var name: String
+    var population: Int
+    
+    func collectTaxes() -> Int {
+        population * 1000
+    }
+}
+
+var myCountry = Country(name: "Ukraine", population: 44_000_000)
+myCountry.collectTaxes()
+
+//Mutating methods
+
+struct Person {
+    var name: String
+    
+    mutating func makeAnnonymous(){
+        name = "Annonymous"
+    }
+}
+
+var Person1 = Person(name: "Ed Sherah")
+Person1.makeAnnonymous()
+print(Person1.name)
+
+//String methods
+//Check if it start with some letters
+let testString = "What is it"
+
+testString.hasPrefix("Wh")
+
+testString.uppercased()
+
+//Array methods
+//locate objects index number
+let testArray = ["Mercedes", "Bmw", "Jaguar"]
+testArray.firstIndex(of: "Jaguar")
+
