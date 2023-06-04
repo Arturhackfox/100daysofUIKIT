@@ -685,3 +685,84 @@ testString.uppercased()
 let testArray = ["Mercedes", "Bmw", "Jaguar"]
 testArray.firstIndex(of: "Jaguar")
 
+
+//MARK: Day 9 of 100
+//Initializers inside extension
+
+struct User {
+    var name: String
+}
+
+extension User {
+    init() {
+        self.name = "Annon"
+    }
+
+}
+
+var user1 = User()
+print(user1.name)
+user1.name = "Alihandro"
+print(user1.name)
+
+//self inside init
+
+struct Personal {
+    var name: String
+    
+    init(name: String) {
+        print("\(name) was born!")
+        self.name = name
+    }
+}
+
+var user2 = Personal(name: "Mike Tayson")
+
+
+// lazy key Word
+struct FamilyTree {
+    init(){
+        print("Creating family tree...")
+    }
+}
+
+struct Worker {
+    var name: String
+    lazy var family = FamilyTree()
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+var ed = Worker(name: "Ed")
+ed.family
+
+ // So, if you want to see the “Creating family tree!” message, you need to access the property at least once:
+
+// Static value
+
+struct Student {
+    static var classSize = 0
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+        Student.classSize += 1
+    }
+}
+
+var stu1 = Student(name: "Art")
+var stu2 = Student(name: "Mart")
+print(Student.classSize)
+
+// Access controll Private
+struct Guard {
+    private var id: String
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+
+var guard1 = Guard(id: "21312313")
