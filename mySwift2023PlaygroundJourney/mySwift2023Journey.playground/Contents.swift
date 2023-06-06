@@ -766,3 +766,231 @@ struct Guard {
 }
 
 var guard1 = Guard(id: "21312313")
+
+//MARK: Day 10 of 100
+//Class and inheritance
+
+class Dog {
+    var name: String
+    var breed: String
+    
+    init(name: String, breed: String) {
+        self.name = name
+        self.breed = breed
+    }
+}
+
+var dog1 = Dog(name: "Marta", breed: "Shpiz")
+dog1.breed
+dog1.name
+
+class Poodle: Dog {
+    
+    init(name: String) {
+        super.init(name: name, breed: "Poodle")
+    }
+}
+
+var poodle = Poodle(name: "Poodliana")
+poodle.name
+
+//Overriding func
+
+class Doggy {
+    func makeNoise() {
+        print("Woof")
+    }
+}
+
+class Shpiz: Doggy {
+    override func makeNoise() {
+        print("Yip")
+    }
+}
+
+let puppy = Shpiz()
+puppy.makeNoise()
+
+class Child {
+    fileprivate var screamCount = 0
+    func makeScream() {
+        screamCount += 1
+        print("AaAaAaAaAaAaa")
+    }
+}
+
+class Adult: Child {
+    override func makeScream() {
+        screamCount += 1
+        print("$^&*&^*$^#%!!!!!!")
+    }
+}
+
+let lilKid = Child()
+lilKid.makeScream()
+lilKid.screamCount
+let adult = Adult()
+adult.makeScream()
+adult.screamCount
+
+
+//deinit()
+class Neighbor {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func makeNewNeighbor() {
+        print("my name is\(name), i'm Alive!")
+    }
+    
+    deinit {
+        print("I'm dead.")
+    }
+}
+
+for _ in 1...3 {
+    let person = Neighbor(name: "Persona")
+    person.makeNewNeighbor()
+}
+
+//Mutability (no need mutating inside class in order to change values inside it)
+//Even if class instance is constant "let" it's values can be changed
+class Singer {
+    var name = "Amaterasu"
+}
+
+let singerFromLa = Singer()
+singerFromLa.name = "Lil Kristall"
+print(singerFromLa.name)
+
+
+//MARK: Day 11 of 100
+
+//Protocols
+
+protocol Identifiable {
+    var id: String {get set}
+}
+
+class SecurityGuard: Identifiable {
+    var id: String
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+
+
+func checkId (badge: Identifiable) {
+    print("User's id is: \(badge.id)")
+}
+
+
+var pe = SecurityGuard(id: "2313123123")
+checkId(badge: pe)
+
+protocol Rest {
+    func takeNap()
+}
+
+class Schooler: Rest {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func takeNap() {
+        print("\(name) just took a nap!")
+    }
+}
+
+
+let schooler = Schooler(name: "Nicolas")
+schooler.takeNap()
+
+//Extensions
+
+extension Int {
+    func squared() -> Int {
+        return self * self
+    }
+}
+
+let number = 7
+number.squared()
+
+
+extension String {
+    func newUpper() -> String {
+        print("NOW I'M UPPERCASED!")
+        return self.uppercased()
+    }
+}
+
+let strink = "this is lowercased text"
+print(strink.newUpper())
+
+
+
+let pythons = ["Eric", "Graham", "John", "Michael", "Terry", "Terry"]
+let beatles = Set(["John", "Paul", "George", "Ringo"])
+
+extension Collection {
+    func summarize() {
+        print("There are \(count) elements")
+        
+        for i in self {
+            print(i)
+        }
+    }
+}
+pythons.summarize()
+beatles.summarize()
+
+
+extension Int {
+    func multiplyAndPrint() -> String{
+        return "\(self) * \(self) is \(self * self)"
+    }
+}
+
+let integ = 10
+integ.multiplyAndPrint()
+
+
+// Protocol oriented programming
+
+protocol Id {
+    var id: String {get set}
+    
+    func readId()
+}
+
+extension Id {
+    func readId() {
+        print("Id is \(id)")
+    }
+}
+
+
+struct user: Id {
+    var id: String
+}
+
+protocol playable: Id {
+    
+    func play()
+}
+
+
+class player: playable {
+    var id = "0"
+    
+    func play() {
+        print("playing games rn")
+    }
+}
