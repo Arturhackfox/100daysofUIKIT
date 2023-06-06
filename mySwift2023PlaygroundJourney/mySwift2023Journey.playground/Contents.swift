@@ -993,4 +993,9 @@ class player: playable {
     func play() {
         print("playing games rn")
     }
+    
 }
+
+
+////MARK: Day 12 of 100
+
