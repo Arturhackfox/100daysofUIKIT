@@ -1045,4 +1045,106 @@ var murlok = Murlok(isKind: false)
 murlok.checkIsKind()
 
 ////MARK: Day 12 of 100
+//Mark: optionals values
+var optInt: Int? = nil
+optInt = 38
 
+//Unwrapping optionals
+// if let = u can use UNWRAPPED value only once inside if let condition
+if let unwrappedInt = optInt {
+    print(unwrappedInt)
+} else{
+    print("There's nil")
+}
+
+//MARK: guard let = u can use it after the condition checked = accent for error "nil"
+func greetMe(_ name: String?) {
+    guard let name = name else {
+        print("There's no data provided.")
+        return
+    }
+    
+    print("My name is \(name), greet me!")
+}
+
+greetMe("Nicolas")
+
+//Force unwrap
+
+let forceOptional: Bool? = true
+print(forceOptional!)
+
+//implicitly unwrapped optionals
+//no need to unwrap them, but they behave as optionals
+var imp: Int! = nil
+print(type(of: imp))
+
+//nil coalescing ??
+
+func checkNum(_ number: Int) -> String? {
+    if number == 1 {
+        return "Number one"
+    } else {
+        return nil
+    }
+}
+
+let resul = checkNum(22) ?? "N/A"
+print(resul)
+
+//Optional chaining
+let names = ["John", "Paul", "George", "Ringo"]
+
+print(names.first?.uppercased() ?? "N/A")
+
+// TRY?
+
+func calculateValue(for number: Int) throws -> String {
+    "the number is \(number)"
+}
+
+let result = try? calculateValue(for: 32)
+print(result!)
+
+
+// Failable initializers
+
+class FailClass {
+    var number: Int
+    
+    init?(number: Int){
+        if number == 22 {
+            self.number = number
+        } else {
+            return nil
+        }
+    }
+}
+
+let fatal = FailClass(number: 9)
+print(fatal?.number)
+
+//as ? TYPE CASTING as?
+class Macho {
+    var name = "Anon"
+}
+
+class Customer: Macho {
+    var id = 2323
+}
+
+class Employee: Macho {
+    var salary = 203023
+}
+
+var customer = Customer()
+var employee = Employee()
+var peopleo = [customer, employee] //Array of type Macho
+
+for p in peopleo {
+    if let cust = p as? Customer {
+        print("I'm a customer with id: \(cust.id)")
+    } else if let emp = p as? Employee {
+        print("I'm an employee and my salary is: \(emp.salary)")
+    }
+}
