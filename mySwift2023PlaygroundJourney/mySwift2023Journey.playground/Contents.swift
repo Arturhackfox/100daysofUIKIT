@@ -997,5 +997,52 @@ class player: playable {
 }
 
 
+class Man {
+    var name: String
+    var height: String
+    
+    init(name: String, height: String) {
+        self.name = name
+        self.height = height
+    }
+}
+
+class Boy: Man {
+    var age: Int
+    
+    init(age: Int, name: String, height: String) {
+        self.age = age
+        super.init(name: name, height: height)
+    }
+}
+
+
+var boy = Boy(age: 12, name: "Marko", height: "133")
+boy.age
+
+
+protocol KindPerson {
+    var isKind: Bool {get set}
+    
+    func checkIsKind()
+}
+
+
+class Murlok: KindPerson {
+    var name = " "
+    var isKind: Bool
+    
+    init(isKind: Bool) {
+        self.isKind = isKind
+    }
+    
+    func checkIsKind() {
+        print(isKind ? "\(name) is kind" : "\(name) is bad character")
+    }
+}
+
+var murlok = Murlok(isKind: false)
+murlok.checkIsKind()
+
 ////MARK: Day 12 of 100
 
