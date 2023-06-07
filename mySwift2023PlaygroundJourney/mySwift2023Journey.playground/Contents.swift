@@ -1148,3 +1148,44 @@ for p in peopleo {
         print("I'm an employee and my salary is: \(emp.salary)")
     }
 }
+
+
+
+//MARK: Sets
+//Subtracting method -> returns objects from first Set that doesn't occur in second Set
+var uniques: Set = ["Mark", "Lev", "Arthur"]
+var uniques2: Set = ["Tom", "Jerry", "Mark"]
+
+let uniquesObject = uniques.subtracting(uniques2)
+print(uniquesObject)
+
+//Intersection of Set -> all mutual objects from set1 and set2
+let intersectedSet = uniques.intersection(uniques2)
+print(intersectedSet)
+
+//Union = returns new Set with elements from set1 and set2
+let unitedObjects = uniques.union(uniques2)
+print(unitedObjects)
+
+//symmetricDiffrence -> get all unique elements that ARE NOT in both sets
+let diffrentObjects = uniques.symmetricDifference(uniques2)
+print(diffrentObjects)
+
+//Removing element from set
+print(uniques)
+uniques.remove("Mark")
+uniques.remove("Lolita")
+print(uniques)
+
+//___________________
+
+//MARK: self
+extension String {
+    func checkPelindrome() -> Bool {
+        self == String(self.reversed())
+    }
+}
+
+let uniqueString = "civic"
+let pelindromeResult = uniqueString.checkPelindrome()
+print(pelindromeResult ? "it's the same both ways!" : "it;s not pelindrime")
