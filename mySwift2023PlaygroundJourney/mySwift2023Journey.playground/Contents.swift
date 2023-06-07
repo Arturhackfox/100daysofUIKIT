@@ -1189,3 +1189,17 @@ extension String {
 let uniqueString = "civic"
 let pelindromeResult = uniqueString.checkPelindrome()
 print(pelindromeResult ? "it's the same both ways!" : "it;s not pelindrime")
+
+//MARK: Self
+extension Numeric {
+    func squaredNumber() -> Self {
+        self * self
+    }
+}
+
+let intNum = 20
+let doubleNum = 2.2
+let decimalNum: Decimal = 2.2
+print(intNum.squaredNumber())
+print(doubleNum.squaredNumber())
+print(decimalNum.squaredNumber())
