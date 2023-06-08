@@ -1222,3 +1222,14 @@ dictionarie["first"]
 dictionarie["second"]
 dictionarie["date"]
 
+//Break inside loops
+var status = true
+var counter = 0
+
+while status {
+    counter += 1
+    print(counter)
+    if counter == 20 {
+        break
+    }
+}
