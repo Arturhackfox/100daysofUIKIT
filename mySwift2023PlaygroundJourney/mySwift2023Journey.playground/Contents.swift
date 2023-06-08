@@ -1203,3 +1203,22 @@ let decimalNum: Decimal = 2.2
 print(intNum.squaredNumber())
 print(doubleNum.squaredNumber())
 print(decimalNum.squaredNumber())
+
+
+////MARK: Day 13 of 100
+//Any array
+let anyArray: [Any] = ["Swift", 12, false]
+anyArray[0]
+anyArray[1]
+anyArray[2]
+
+//dictionaries
+let dictionarie: [String: Any] = [
+    "first": "Arthur",
+    "second": "Sh",
+    "date": 14
+]
+dictionarie["first"]
+dictionarie["second"]
+dictionarie["date"]
+
