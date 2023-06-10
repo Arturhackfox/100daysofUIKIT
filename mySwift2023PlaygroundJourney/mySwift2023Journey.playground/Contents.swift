@@ -1233,3 +1233,41 @@ while status {
         break
     }
 }
+
+
+//MARK: Day 14 of 100
+//optionals
+
+var items = ["Pen", "Silk", "Table"]
+
+func findItemsIndex(for str: String, array: [String]) -> Int? {
+    for i in 0..<array.count {
+        if array[i] == str {
+            return i
+        }
+        
+    }
+    
+    return nil
+    
+}
+
+findItemsIndex(for: "Pen", array: items)
+findItemsIndex(for: "Table", array: items)
+findItemsIndex(for: "Silk", array: items)
+findItemsIndex(for: "Shower", array: items)
+
+
+let numArray = [1, 5, 10, 15]
+
+func foundItsIndex(for num: Int, array: [Int]) -> Int? {
+    for i in 0..<array.count {
+        if array[i] == num {
+            return i
+        }
+    }
+    return nil
+}
+
+foundItsIndex(for: 15, array: numArray)
+foundItsIndex(for: 12, array: numArray)
