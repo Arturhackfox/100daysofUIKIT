@@ -30,7 +30,7 @@ print(str2)
 let person1 = "Mike"
 let person2 = "Joseph"
 let person3 = "Nancy"
- 
+
 let students = [person1, person2, person3]
 print(students)
 
@@ -221,7 +221,7 @@ var  numberz = 1
 while numberz <= 20 {
     print(numberz)
     numberz += 1
-    }
+}
 print("Ready or not, here i come!")
 
 
@@ -465,7 +465,7 @@ func ActivateMyDay (action: () -> Void) {
 
 
 ActivateMyDay {
-  print("I gotta box")
+    print("I gotta box")
 }
 
 
@@ -582,7 +582,7 @@ func cloclo (action: (String) -> String) {
 }
 
 cloclo { name in
-   "i'm closure called \(name)"
+    "i'm closure called \(name)"
 }
 
 //  MARK: Closure inside func
@@ -617,7 +617,7 @@ struct Activity {
     
     var isOlimpicStatus: String {
         if isOlimpicSport {
-           return "\(name) is the Olimpic sport"
+            return "\(name) is the Olimpic sport"
         } else {
             return "\(name) is NOT an olimpic sport"
         }
@@ -697,7 +697,7 @@ extension User {
     init() {
         self.name = "Annon"
     }
-
+    
 }
 
 var user1 = User()
@@ -738,7 +738,7 @@ struct Worker {
 var ed = Worker(name: "Ed")
 ed.family
 
- // So, if you want to see the “Creating family tree!” message, you need to access the property at least once:
+// So, if you want to see the “Creating family tree!” message, you need to access the property at least once:
 
 // Static value
 
@@ -1271,3 +1271,115 @@ func foundItsIndex(for num: Int, array: [Int]) -> Int? {
 
 foundItsIndex(for: 15, array: numArray)
 foundItsIndex(for: 12, array: numArray)
+
+//Enums
+
+enum weatherType {
+    case sun
+    case rain
+    case wind(speed: Int)
+    case snow
+}
+
+func mood(weather: weatherType) -> String? {
+    switch weather {
+    case .sun:
+        return nil
+    case .wind(let speed) where speed < 10:
+        return "wind is not tat bad"
+    case .rain, .snow:
+        return "ewewww"
+    case  .wind:
+        return "windyyy"
+    }
+}
+
+mood(weather: .wind(speed: 8))
+
+
+enum workerType {
+    case lazy
+    case average
+    case productive
+    case hardCore
+}
+
+func workerTypeAnalysisBy(hoursPerDay: Int) -> workerType {
+    switch hoursPerDay {
+    case 0...3:
+        return .lazy
+    case 3...5:
+        return .average
+    case 5...9:
+        return .productive
+    default:
+        return .hardCore
+    }
+}
+
+let  Arthur = workerTypeAnalysisBy(hoursPerDay: 12)
+print(Arthur)
+
+
+func checkYourEmployee(status: workerType) -> String {
+    switch status {
+    case .lazy:
+        return "You should work more 😴"
+    case .average:
+        return "Good, but it can be better 📈"
+    case .productive:
+        return "You are working more than average person do 👍"
+    case .hardCore:
+        return "You have to take some vacation ⛱️"
+    }
+}
+
+checkYourEmployee(status: .hardCore)
+
+
+//Class inheritance
+
+class Singerr {
+    var name: String
+    var age: Int
+    var isFamous: Bool
+    var height: Double
+    
+    init(name: String, age: Int, isFamous: Bool, height: Double){
+        self.name = name
+        self.age = age
+        self.isFamous = isFamous
+        self.height = height
+    }
+    
+    func sing() {
+        print("Leleleleleleeeeeee")
+    }
+}
+
+class VillageSinger: Singerr {
+    override func sing() {
+        print("Opa, opa, yeyeyeyeyeyeee, Opa, opa, ye ye ye.")
+    }
+}
+
+class MetalSinger: Singerr {
+    var noiseLevel: Int
+    
+    init(name: String, age: Int, isFamous: Bool, height: Double, noiseLevel: Int) {
+        self.noiseLevel = noiseLevel
+        
+        super.init(name: name, age: age, isFamous: isFamous, height: height)
+    }
+    
+    override func sing() {
+        print("Raaawrrr, raaawwrrrrr")
+    }
+}
+
+var Archibald = MetalSinger(name: "Arthur", age: 22, isFamous: false, height: 188, noiseLevel: 22)
+Archibald.name
+Archibald.age
+Archibald.isFamous
+Archibald.height
+Archibald.sing()
