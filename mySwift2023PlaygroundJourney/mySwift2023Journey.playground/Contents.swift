@@ -1516,3 +1516,84 @@ for item in gadgets {
 
 print(laptopCount)
 print(phoneCount)
+
+
+// poly example
+
+class Food {
+    var name: String
+    var price: Int
+    
+    init(name: String, price: Int){
+        self.name = name
+        self.price = price
+    }
+    
+    func buy(){
+        print("I just bought \(name), for $\(price).")
+    }
+}
+
+class Meat: Food {
+    var meatType: String
+    
+    init(name: String, price: Int, meatType: String){
+        self.meatType = meatType
+        super.init(name: name, price: price)
+    }
+    
+    override func buy() {
+        print("This \(name), has perfect type of \(meatType)  it's A-ma-zing! It's only $\(price)!")
+    }
+}
+
+class Vegetables: Food {
+    var color: String
+    
+    init(name: String, price: Int, color: String){
+        self.color = color
+        super.init(name: name, price: price)
+    }
+    
+    override func buy() {
+        print("I love \(name), this one's color is \(color), and it was only $\(price).")
+    }
+}
+
+
+var food = Food(name: "Bugget", price: 4)
+var meat = Meat(name: "Salmon", price: 12, meatType: "Fish")
+var vegie = Vegetables(name: "Asparaghus", price: 3, color: "Green")
+
+
+var foods:[Food] = [food, meat, vegie, meat, vegie, meat, vegie, meat, vegie]
+
+for item in foods {
+    item.buy()
+}
+
+// typecasting example
+
+for item in foods {
+    if let meat = item as? Meat {
+        print("I found a \(meat.name) and that's a MEAT!")
+    } else if let vegie = item as? Vegetables {
+        print("Vegie found! \(vegie.color) is my favourite!")
+    }
+}
+
+
+// is example
+
+var meatCount = 0
+var vegieCount = 0
+
+for i in foods {
+    if i is Meat {
+        meatCount += 1
+    } else if i is Vegetables {
+        vegieCount += 1
+    }
+}
+print(meatCount)
+print(vegieCount)
