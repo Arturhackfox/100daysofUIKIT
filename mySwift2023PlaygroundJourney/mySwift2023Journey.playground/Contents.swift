@@ -1383,3 +1383,136 @@ Archibald.age
 Archibald.isFamous
 Archibald.height
 Archibald.sing()
+
+//MARK: day 15 of 100
+// willset and didset
+
+struct Woman {
+    var name: String
+    var hairColor: String {
+        willSet {
+            describe("My current Hair color is \(hairColor) and my new one is \(newValue)")
+        }
+        didSet {
+            describe("My new hair color is \(hairColor) but \(oldValue) was also good")
+        }
+    }
+    
+    func describe(_ str: String) {
+        print(str)
+    }
+}
+
+var nexi = Woman(name: "Nexi", hairColor: "Blonde")
+nexi.hairColor = "Pink"
+
+
+//get -> read only value
+struct Fan {
+    var age: Int
+    
+    var ageInDogYears: Int {
+        get {
+           return age * 7
+        }
+    }
+}
+
+var dogLover = Fan(age: 10)
+dogLover.ageInDogYears
+
+//Static
+//-> Data belongs to a type, not to instance of a type.
+
+struct MercedesFan {
+    static var favouriteBrand = "Mercedes"
+    
+    var favouriteCar: String
+    var price: Int
+}
+
+var myCar = MercedesFan(favouriteCar: "S63Amg", price: 150_000)
+print(MercedesFan.favouriteBrand)
+
+
+
+struct UrlPath {
+    static var url = "https://hackingwithswift.com"
+}
+
+print(UrlPath.url)
+
+//Polymorphism -> это возможность объектов разных классов использовать одно и то же имя метода или свойства, но с разными реализациями.
+
+class Gadget {
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func describe() {
+        print("I like to use my \(name)")
+    }
+}
+
+class Phone: Gadget {
+    var model: String
+    
+    init(name: String, model: String) {
+        self.model = model
+        super.init(name: name)
+    }
+    
+    override func describe() {
+        print("I like my \(name), it's model is - \(model)")
+    }
+}
+
+class Laptop: Gadget {
+    var brand: String
+    var yearMade: Int
+    
+    init(name: String, brand: String, yearMade: Int){
+        self.brand = brand
+        self.yearMade = yearMade
+        super.init(name: name)
+    }
+    
+    override func describe() {
+        print("My laptop's brand is \(brand), and it's year is: \(yearMade)")
+    }
+}
+
+
+var gadet = Gadget(name: "Radio")
+var phone = Phone(name: "Iphone", model: "14 pro max")
+var laptop = Laptop(name: "MacBook Pro", brand: "Apple", yearMade: 2021)
+
+var gadgets = [gadet, phone, laptop]
+
+for gadget in gadgets {
+    print(gadget.describe()) //ПОЛИМОРФИЗМ это возможность объектов разных классов использовать                           одно и то же имя метода или свойства, но с разными реализациями.
+}
+
+for gadget in gadgets {
+    if let phone = gadget as? Phone {
+        print(phone.model)
+    } else if let laptop = gadget as? Laptop {
+        print(laptop.yearMade)
+    }
+}
+
+var laptopCount = 0
+var phoneCount = 0
+
+for item in gadgets {
+    if item is Laptop {
+        laptopCount += 1
+    } else if item is Phone {
+        phoneCount += 1
+    }
+}
+
+print(laptopCount)
+print(phoneCount)
